@@ -1,16 +1,21 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 require('dotenv').config()
 
 const User = require('./Models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
+const recipeRoutes = require('./routes/recipes')
+const uploadRoutes = require('./routes/upload')
+
 const app = express()
 const PORT = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.get('/', (req, res) => {
   res.send("<h2 style='color:blue;text-align:center'>Welcome to Recipe App API</h2>")
@@ -39,13 +44,16 @@ app.post('/login', async (req, res) => {
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Invalid Credentials' })
     }
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || 'default_secret', { expiresIn: '1h' })
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || 'default_secret', { expiresIn: '7d' })
     res.json({ message: 'Login Successful', Username: user.Username, token })
   } catch (err) {
     console.log(err)
     res.status(500).json({ message: 'Server error' })
   }
 })
+
+app.use('/api/recipes', recipeRoutes)
+app.use('/api/upload', uploadRoutes)
 
 app.listen(PORT, () => {
   console.log('Server is Running on port: ' + PORT)

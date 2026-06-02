@@ -1,36 +1,51 @@
 body {
-  background: url("https://i.postimg.cc/K8t7yqYt/pppbackk.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
 }
 
-.container{
-  background:white;
-  padding:20px;
-  width:320px;
-  border-radius:8px;
-  box-shadow:0 4px 8px rgba(0,0,0,0.2);
-  text-align:center;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:20px;
+.container {
+  background: transparent;
+  padding: 0;
+  width: auto;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left;
+  margin: 0;
 }
-input{
-  width:90%;
-  padding:10px;
-  margin:10px 0;
-  border:1px solid #ccc;
-  border-radius:1px;
-  font-size:16px;
+
+.card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.2s;
 }
-button
-{
-  font-size:16px;
-  background-color:#007bff;
-  color:white;
-  cursor:pointer;
+
+.card:hover {
+  transform: translateY(-4px);
 }
-button:hover{
-  background-color:#0056b3;
+
+.card-img-top {
+  border-radius: 12px 12px 0 0;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
