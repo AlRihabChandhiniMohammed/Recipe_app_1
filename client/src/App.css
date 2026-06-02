@@ -1,0 +1,36 @@
+body {
+  background: url("https://i.postimg.cc/K8t7yqYt/pppbackk.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container{
+  background:white;
+  padding:20px;
+  width:320px;
+  border-radius:8px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.2);
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:20px;
+}
+input{
+  width:90%;
+  padding:10px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:1px;
+  font-size:16px;
+}
+button
+{
+  font-size:16px;
+  background-color:#007bff;
+  color:white;
+  cursor:pointer;
+}
+button:hover{
+  background-color:#0056b3;
+}
