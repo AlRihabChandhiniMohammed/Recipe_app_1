@@ -1,9 +1,19 @@
-const mongoose = require('mongoose')
+const { db } = require('../firebase')
 
-const UserSchema = new mongoose.Schema({
-  Username: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
-})
+const collection = db.collection('users')
 
-module.exports = mongoose.model('User', UserSchema)
+const User = {
+  async findByEmail(email) {
+    const snapshot = await collection.where('email', '==', email).get()
+    if (snapshot.empty) return null
+    const doc = snapshot.docs[0]
+    return { id: doc.id, ...doc.data() }
+  },
+
+  async create(data) {
+    const docRef = await collection.add(data)
+    return { id: docRef.id, ...data }
+  }
+}
+
+module.exports = User

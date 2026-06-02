@@ -1,5 +1,6 @@
 node_modules/
 .env
+serviceAccountKey.json
 client/build/
 *.log
 .DS_Store
