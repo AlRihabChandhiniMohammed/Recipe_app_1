@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
 
-const { db } = require('./firebase')
 const User = require('./Models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -20,12 +19,12 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
   const { Username, email, password } = req.body
   try {
-    const existingUser = await User.findByEmail(email)
+    const existingUser = User.findByEmail(email)
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' })
     }
     const hashPassword = await bcrypt.hash(password, 10)
-    await User.create({ Username, email, password: hashPassword })
+    User.create({ Username, email, password: hashPassword })
     res.json({ message: 'User Registered Successfully' })
   } catch (err) {
     console.log(err)
@@ -36,7 +35,7 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
   const { email, password } = req.body
   try {
-    const user = await User.findByEmail(email)
+    const user = User.findByEmail(email)
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Invalid Credentials' })
     }
@@ -48,17 +47,6 @@ app.post('/login', async (req, res) => {
   }
 })
 
-app.listen(PORT, async (err) => {
-  if (err) {
-    console.log(err)
-    return
-  }
+app.listen(PORT, () => {
   console.log('Server is Running on port: ' + PORT)
-  try {
-    await db.collection('_test').doc('_test').set({ createdAt: new Date() })
-    await db.collection('_test').doc('_test').delete()
-    console.log('Firestore connected successfully')
-  } catch (err) {
-    console.log('Firestore error:', err.message)
-  }
 })

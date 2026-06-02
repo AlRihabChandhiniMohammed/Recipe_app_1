@@ -1,18 +1,14 @@
-const { db } = require('../firebase')
-
-const collection = db.collection('users')
+const db = require('../database')
 
 const User = {
-  async findByEmail(email) {
-    const snapshot = await collection.where('email', '==', email).get()
-    if (snapshot.empty) return null
-    const doc = snapshot.docs[0]
-    return { id: doc.id, ...doc.data() }
+  findByEmail(email) {
+    return db.prepare('SELECT * FROM users WHERE email = ?').get(email) || null
   },
 
-  async create(data) {
-    const docRef = await collection.add(data)
-    return { id: docRef.id, ...data }
+  create(data) {
+    const stmt = db.prepare('INSERT INTO users (Username, email, password) VALUES (?, ?, ?)')
+    const result = stmt.run(data.Username, data.email, data.password)
+    return { id: result.lastInsertRowid, ...data }
   }
 }
 
