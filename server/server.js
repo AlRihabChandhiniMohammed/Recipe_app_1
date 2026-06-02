@@ -48,10 +48,17 @@ app.post('/login', async (req, res) => {
   }
 })
 
-app.listen(PORT, (err) => {
+app.listen(PORT, async (err) => {
   if (err) {
     console.log(err)
     return
   }
   console.log('Server is Running on port: ' + PORT)
+  try {
+    await db.collection('_test').doc('_test').set({ createdAt: new Date() })
+    await db.collection('_test').doc('_test').delete()
+    console.log('Firestore connected successfully')
+  } catch (err) {
+    console.log('Firestore error:', err.message)
+  }
 })
