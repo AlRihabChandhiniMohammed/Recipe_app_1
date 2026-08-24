@@ -15,7 +15,7 @@ const RecipeForm = () => {
 
   useEffect(() => {
     if (isEdit) {
-      axios.get(`http://localhost:3000/api/recipes/${id}`)
+      axios.get(`/api/recipes/${id}`)
         .then(res => {
           const r = res.data
           setForm({
@@ -47,7 +47,7 @@ const RecipeForm = () => {
       if (form.imageFile) {
         const fd = new FormData()
         fd.append('image', form.imageFile)
-        const uploadRes = await axios.post('http://localhost:3000/api/upload', fd, {
+        const uploadRes = await axios.post('/api/upload', fd, {
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
         })
         imageUrl = uploadRes.data.url
@@ -64,11 +64,11 @@ const RecipeForm = () => {
       }
 
       if (isEdit) {
-        await axios.put(`http://localhost:3000/api/recipes/${id}`, payload, {
+        await axios.put(`/api/recipes/${id}`, payload, {
           headers: { Authorization: `Bearer ${token}` }
         })
       } else {
-        await axios.post('http://localhost:3000/api/recipes', payload, {
+        await axios.post('/api/recipes', payload, {
           headers: { Authorization: `Bearer ${token}` }
         })
       }

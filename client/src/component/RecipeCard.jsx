@@ -11,7 +11,7 @@ const RecipeCard = ({ recipe }) => {
       <div className="card h-100 shadow-sm">
         {recipe.imageUrl && (
           <img
-            src={recipe.imageUrl.startsWith('http') ? recipe.imageUrl : `http://localhost:3000${recipe.imageUrl}`}
+            src={recipe.imageUrl.startsWith('http') ? recipe.imageUrl : recipe.imageUrl}
             className="card-img-top"
             alt={recipe.title}
             style={{ height: '200px', objectFit: 'cover' }}

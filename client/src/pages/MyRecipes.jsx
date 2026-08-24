@@ -10,7 +10,7 @@ const MyRecipes = () => {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) return
-    axios.get('http://localhost:3000/api/recipes/mine', {
+    axios.get('/api/recipes/mine', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => setRecipes(res.data))

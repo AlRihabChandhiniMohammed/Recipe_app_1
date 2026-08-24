@@ -12,7 +12,7 @@ const RecipeDetail = () => {
   const instructions = recipe ? (typeof recipe.instructions === 'string' ? JSON.parse(recipe.instructions) : recipe.instructions) : []
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/recipes/${id}`)
+    axios.get(`/api/recipes/${id}`)
       .then(res => setRecipe(res.data))
       .catch(() => navigate('/'))
       .finally(() => setLoading(false))
@@ -22,7 +22,7 @@ const RecipeDetail = () => {
     if (!window.confirm('Delete this recipe?')) return
     try {
       const token = localStorage.getItem('token')
-      await axios.delete(`http://localhost:3000/api/recipes/${id}`, {
+      await axios.delete(`/api/recipes/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       navigate('/recipes')
@@ -42,7 +42,7 @@ const RecipeDetail = () => {
       <div className="card shadow-sm">
         {recipe.imageUrl && (
           <img
-            src={recipe.imageUrl.startsWith('http') ? recipe.imageUrl : `http://localhost:3000${recipe.imageUrl}`}
+            src={recipe.imageUrl.startsWith('http') ? recipe.imageUrl : recipe.imageUrl}
             className="card-img-top"
             alt={recipe.title}
             style={{ maxHeight: '400px', objectFit: 'cover' }}

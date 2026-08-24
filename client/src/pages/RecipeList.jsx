@@ -7,7 +7,7 @@ const RecipeList = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/recipes')
+    axios.get('/api/recipes')
       .then(res => setRecipes(res.data))
       .catch(console.log)
       .finally(() => setLoading(false))
