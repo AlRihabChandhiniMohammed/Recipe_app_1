@@ -2,23 +2,41 @@
   "name": "recipe-app",
   "version": "1.0.0",
   "private": true,
-  "description": "Recipe App - MERN Stack",
+  "description": "Recipe App",
   "scripts": {
     "server": "cd server && npm start",
     "client": "cd client && npm start",
     "dev": "concurrently --names \"API,WEB\" --prefix-colors \"blue,green\" \"npm run server\" \"npm run client\"",
     "install-all": "npm install && cd server && npm install && cd ../client && npm install",
-    "build": "cd client && npm run build",
+    "build": "react-scripts build",
     "start": "npm run server"
   },
   "dependencies": {
+    "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "uuid": "^14.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.4.0",
+    "react-scripts": "5.0.1",
+    "uuid": "^14.0.0",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

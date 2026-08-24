@@ -1,13 +1,6 @@
 {
   "version": 2,
-  "outputDirectory": "client/build",
-  "buildCommand": "cd client && npm install && npm run build",
-  "installCommand": "npm install",
-  "api": {
-    "server.js": {
-      "maxDuration": 10
-    }
-  },
+  "outputDirectory": "build",
   "rewrites": [
     {
       "source": "/api/(.*)",
