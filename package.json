@@ -11,8 +11,14 @@
     "build": "cd client && npm run build",
     "start": "npm run server"
   },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^14.0.0"
+  },
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "@vercel/node": "^5.10.2"
+    "concurrently": "^9.1.2"
   }
 }
