@@ -3,6 +3,11 @@
   "outputDirectory": "client/build",
   "buildCommand": "cd client && npm install && npm run build",
   "installCommand": "npm install",
+  "api": {
+    "server.js": {
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
